@@ -1,0 +1,26 @@
+.itemCard {
+    height: 41vh;
+    width: 300px;
+    background-color: bisque;
+    border: 1px solid gray;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0.5rem;
+}
+
+.itemCard>img {
+    width: 100%;
+}
+
+.itemCard>p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.itemCard>button {
+    width: 60%;
+    margin-left: 20%;
+    height: 2rem;
+    border-radius: 9px;
+    border: none;
+}

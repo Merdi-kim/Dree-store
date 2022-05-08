@@ -1,0 +1,54 @@
+.store {
+    height: 100vh;
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20vh;
+    color: white;
+}
+
+.store>h2 {
+    margin: 0;
+}
+
+.store>form {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    background-color: rgb(3, 160, 212);
+    border-radius: 12px;
+}
+
+.store>form>fieldset {
+    margin: 0.5rem;
+    border: none;
+}
+
+.store>form input, .store>form input[type="file"] {
+    height: 1.7rem;
+    width: 100%;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    margin-top: 0.5rem;
+}
+
+.store>form input[type="file"] {
+    background-color: white;
+    padding: 3px;
+    color: black;
+}
+
+.store>form button[type='submit'] {
+    margin-left: 20%;
+    margin-top: 2rem;
+    width: 60%;
+    height: 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+}
