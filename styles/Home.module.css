@@ -26,26 +26,28 @@
   border-radius: 50%;
 }
 
-.container>nav>button {
-  width: 12rem;
-  height: 2.7rem;
-  border: none;
+.container>nav>a {
+  font-size: 20px;
+  color: black;
   font-weight: bold;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.3rem;
   border-radius: 12px;
-  background: linear-gradient(to right, rgb(3, 142, 235), rgb(1, 123, 203), rgb(4, 4, 242));
-  color: white;
-  cursor: pointer;
+  background-color: wheat;
+  width: 12%;
+  border: 2px solid white;
 }
 
-.container>nav>button:hover {
-  background: linear-gradient(to right,rgb(4, 4, 242), rgb(3, 142, 235), rgb(1, 123, 203));
+.container>nav>a:hover {
+  background-color: rgb(241, 164, 21);
 }
 
 .caroussel {
   height: calc(100% - 4rem);
   width: 100%;
-  background-color: rgba(45, 44, 44, .9);
+  background-color: rgba(45, 44, 44, .95);
   display: flex;
 }
 
@@ -66,25 +68,28 @@
 .caroussel>section>p {
   font-size: 65px;
   font-weight: bolder;
-  color: white;
+  background: linear-gradient(to right, #2196f3, #26c6da, #eeff41, #f9a825, #ff5722);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.caroussel>section>a {
-  font-size: 20px;
-  color: blue;
-  font-weight: bold;
+.caroussel>section>button {
+  width: 35%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2.3rem;
+  height: 2.7rem;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
   border-radius: 12px;
-  background-color: white;
-  width: 35%;
+  background: linear-gradient(to right, rgb(3, 142, 235), rgb(1, 123, 203), rgb(4, 4, 242));
+  color: white;
+  cursor: pointer;
 }
 
-.caroussel>section>a:hover {
-  background-color: blue;
-  color: white;
+.caroussel>section>button:hover {
+  background: linear-gradient(to right,rgb(4, 4, 242), rgb(3, 142, 235), rgb(1, 123, 203));
 }
 
 .categories {
@@ -92,7 +97,6 @@
   align-items: center;
   padding: 10px;
   height: 3rem;
-  background-color: rgb(21, 144, 210);
 }
 
 .categories>span {
@@ -119,13 +123,28 @@
   padding-right: 10px;
   margin-left: 2rem;
   cursor: pointer;
+  border: 1px solid blue;
+}
+
+.categories>section>button:hover {
+  background-color: rgb(209, 207, 207);
 }
 
 .categories>section::-webkit-scrollbar {
   display: none;
 }
 
+.stores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+}
+
 @media screen and (max-width:960px) {
+  .container>nav>a {
+    width: 20%;
+  }
   .caroussel>img {
     width: 50%;
   }
@@ -139,7 +158,7 @@
     font-weight: bold;
   }
 
-  .caroussel>section>a {
+  .caroussel>section>button {
     width: 55%;
   }
 }
@@ -152,7 +171,7 @@
     height: 2.5rem;
     width: 2.5rem;
   }
-  .container>nav>button {
+  .container>nav>a {
     width: 9rem;
     height: 2rem;
     font-size: 15px;
@@ -182,8 +201,8 @@
     font-weight: bold;
   }
 
-  .caroussel>section>a {
-    width: 35%;
+  .caroussel>section>button {
+    width: 40%;
     height: 1.8rem;
     font-size: 16px;
   }
@@ -198,6 +217,17 @@
 }
 
 @media screen and (max-width:550px) {
+  .container>nav {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .container>nav>a {
+    width: 7rem;
+    height: 1.8rem;
+    font-size: 13px;
+  }
+
   .caroussel>img {
     margin-left: 25%;
     width: 50%;
@@ -214,8 +244,8 @@
     font-size: 22px;
   }
 
-  .caroussel>section>a {
-    width: 25%;
+  .caroussel>section>button {
+   border-radius: 6px;
     height: 1.5rem;
     font-size: 12px;
   }

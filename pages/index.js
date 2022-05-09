@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import StoreCard from '../components/StoreCard'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -16,12 +17,12 @@ export default function Home() {
         <div className={styles.container}>
           <nav>
             <img src="https://blog.hubspot.com/hubfs/ecommerce-software.jpg" alt="" />
-            <button>Connect wallet</button>
+            <Link href='/create-store'>New store</Link>
           </nav>
           <div className={styles.caroussel}>
             <section>
               <p>Shop on the decentralized web</p> 
-              <a href="">Start now</a>
+              <button>Connect wallet</button>
             </section>
             <img src="/images/dree-store.gif" alt="" />
           </div>
@@ -37,7 +38,15 @@ export default function Home() {
               <button>Others</button>
             </section>
           </div>
-
+          <div className={styles.stores}>
+            
+            <StoreCard/>
+            <StoreCard/>
+            <StoreCard/>
+            <StoreCard/>
+            <StoreCard/>
+            
+          </div>
         </div>
       </main>
     </div>
