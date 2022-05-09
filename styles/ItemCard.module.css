@@ -1,4 +1,5 @@
 .itemCard {
+    flex: none;
     height: 41vh;
     width: 300px;
     background-color: bisque;

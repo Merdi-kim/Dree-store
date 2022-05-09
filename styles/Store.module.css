@@ -1,0 +1,30 @@
+.store {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.store>nav {
+    height: 4rem;
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.store>nav>img {
+    height: 3.5rem;
+    width: 3.8rem;
+    border-radius: 50%;
+}
+
+.itemsList {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+}
