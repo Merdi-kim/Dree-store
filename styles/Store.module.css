@@ -1,24 +1,25 @@
 .store {
     width: 100%;
     min-height: 100vh;
+    background-color: black;
 }
 
 .store>nav {
     height: 4rem;
-    background-color: blue;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: white;
+    padding: 20px;
+    color: wheat;
+    border-bottom: 1px solid wheat;
     font-weight: bold;
     font-size: 20px;
+    background-color: rgb(33, 32, 32);
 }
 
 .store>nav>img {
-    height: 3.5rem;
-    width: 3.8rem;
+    height: 3rem;
+    width: 3.2rem;
     border-radius: 50%;
 }
 

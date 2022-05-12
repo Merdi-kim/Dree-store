@@ -9,7 +9,8 @@ function CreateStore() {
   }
 
   return (
-    <div className={styles.store}>
+    <div className={styles.container}>
+      <div className={styles.store}>
       <h2>Create your store here !</h2>
       <form onSubmit={createStoreHandler}>
         <fieldset>
@@ -28,6 +29,7 @@ function CreateStore() {
       <button type='submit'>Create</button>
         
       </form>
+    </div>
     </div>
   )
 }

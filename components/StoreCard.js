@@ -9,7 +9,7 @@ function StoreCard() {
   return (
     <div className={styles.storeCard} onClick={goToSpecificStoreHandler}>
       <img src="https://ugtechmag.com/wp-content/uploads/2020/04/Odukar-Store-ugtechmag.jpeg" alt="" />
-      <span>Electronics</span>
+      <span>Electronics devices</span>
       <h3>TMP store</h3>
     </div>
   )
