@@ -7,7 +7,7 @@
     border-radius: 9px;
     cursor: pointer;
     position: relative;
-    border: 2px solid gray;
+    background-color: rgb(57, 56, 56);
 }
 
 .storeCard:hover {

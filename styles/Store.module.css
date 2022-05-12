@@ -15,6 +15,7 @@
     font-weight: bold;
     font-size: 20px;
     background-color: rgb(33, 32, 32);
+    position: relative;
 }
 
 .store>nav>img {
@@ -23,9 +24,44 @@
     border-radius: 50%;
 }
 
+.store>nav>a {
+    position: absolute;
+    background-color: gray;
+    width: 20vw;
+    height: 2rem;
+    left: 40vw;
+    top: 3rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store>nav>a:hover {
+    background-color: rgb(69, 68, 68);
+    color: rgb(245, 181, 64);
+}
+
 .itemsList {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     padding-top: 3rem;
+}
+
+@media screen and (max-width:650px){
+    .store>nav>a {
+        width: 35vw;
+        left: 32.5vw;
+    }
+}
+
+
+@media screen and (max-width:485px){
+    .store>nav>span {
+        font-size: 16px;
+    }
+    .store>nav>a {
+        font-size: 14px;
+    }
 }

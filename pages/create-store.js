@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import styles from '../styles/CreateStore.module.css'
+import styles from '../styles/Form.module.css'
 
 function CreateStore() {
 
