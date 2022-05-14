@@ -1,1 +1,1 @@
-# Dree-store on the blockchain
+# Dree-store built to purchase items on the blockchain
