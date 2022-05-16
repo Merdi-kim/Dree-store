@@ -1,10 +1,18 @@
 import Router from 'next/router'
+import { ethers } from 'ethers'
+import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
 import styles from '../styles/Form.module.css'
 
 function CreateStore() {
 
-  const createStoreHandler = (e) => {
+  const createStoreHandler = async(e) => {
     e.preventDefault()
+    const provider = new ethers.providers.JsonRpcProvider()    //Web3Provider(window.ethereum)
+    //await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner()
+    const storeContract = new ethers.Contract('0x5FbDB2315678afecb367f032d93F642f64180aa3', Store.abi, signer)
+    const tx = await storeContract.createStore('lele')
+    const txxx = await tx.wait()
     Router.push('/')
   }
 
