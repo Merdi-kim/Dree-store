@@ -1,6 +1,6 @@
 import Router from 'next/router'
 import styles from '../styles/StoreCard.module.css'
-function StoreCard() {
+function StoreCard({ img, description, name }) {
 
   const goToSpecificStoreHandler = () => {
     Router.push('/store/1')
@@ -8,9 +8,9 @@ function StoreCard() {
 
   return (
     <div className={styles.storeCard} onClick={goToSpecificStoreHandler}>
-      <img src="https://ugtechmag.com/wp-content/uploads/2020/04/Odukar-Store-ugtechmag.jpeg" alt="" />
-      <span>Electronics devices</span>
-      <h3>TMP store</h3>
+      <img src={ img } alt="" />
+      <span>{ description }</span>
+      <h3>{ name }</h3>
     </div>
   )
 }

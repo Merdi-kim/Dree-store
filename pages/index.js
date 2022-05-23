@@ -1,10 +1,16 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import StoreCard from '../components/StoreCard'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+
+  const stores = Array(88).fill({
+    img:'https://ugtechmag.com/wp-content/uploads/2020/04/Odukar-Store-ugtechmag.jpeg',
+    description:'Electronics devices',
+    name:'TMP store'
+  })
+
   return (
     <div>
       <Head>
@@ -39,13 +45,7 @@ export default function Home() {
             </section>
           </div>
           <div className={styles.stores}>
-            
-            <StoreCard/>
-            <StoreCard/>
-            <StoreCard/>
-            <StoreCard/>
-            <StoreCard/>
-            
+            {stores?.map(({img, description, name}) => <StoreCard img={img} description={description} name={name} />)}
           </div>
         </div>
       </main>

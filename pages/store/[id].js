@@ -3,6 +3,12 @@ import ItemCard from '../../components/ItemCard'
 import Link from 'next/link'
 
 function Store() {
+
+  const itemsInStore = Array(55).fill({
+    img:'https://media.smallbiztrends.com/2015/10/opening-your-first-retail-store.jpg',
+    description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit.sit amet consectetur adipisicing',
+    price:0.5
+  })
   return (
     <div className={styles.store}>
         <nav>
@@ -12,16 +18,7 @@ function Store() {
         </nav>
 
         <div className={styles.itemsList}>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
-            <ItemCard/>
+            { itemsInStore?.map(({img, description, price}) => <ItemCard img={img} description={description} price={price} />) }
         </div>
     </div>
   )
