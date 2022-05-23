@@ -32,7 +32,7 @@ export default function Home() {
               <p>Shop on the decentralized web</p> 
               <Link href='/create-store'>New store</Link>
             </section>
-            <img src="/images/dree-store.gif" alt="" />
+            <img src="https://alahausse.ca/wp-content/uploads/2021/08/giphy-phone.gif" alt="" />
           </div>
         </div>
         <div>
@@ -47,7 +47,7 @@ export default function Home() {
             </section>
           </div>
           <div className={styles.stores}>
-            {stores?.map(({img, description, name}) => <StoreCard img={img} description={description} name={name} />)}
+            {stores?.map(({img, description, name}) => <StoreCard key={3} img={img} description={description} name={name} />)}
           </div>
         </div>
       </main>

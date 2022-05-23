@@ -18,7 +18,7 @@ function Store() {
         </nav>
 
         <div className={styles.itemsList}>
-            { itemsInStore?.map(({img, description, price}) => <ItemCard img={img} description={description} price={price} />) }
+            { itemsInStore?.map(({img, description, price}) => <ItemCard key={1} img={img} description={description} price={price} />) }
         </div>
     </div>
   )
