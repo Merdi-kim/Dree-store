@@ -18,31 +18,13 @@
   padding-left: 20px;
   padding-right: 20px;
   height: 4rem;
-  background-color: rgba(45, 44, 44, .9);
+  background-color: rgba(45, 44, 44, .98);
 }
 
 .container>nav>img {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
-}
-
-.container>nav>a {
-  font-size: 20px;
-  color: black;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.3rem;
-  border-radius: 12px;
-  background-color: wheat;
-  width: 12%;
-  border: 2px solid white;
-}
-
-.container>nav>a:hover {
-  background-color: rgb(241, 164, 21);
 }
 
 .caroussel {
@@ -74,8 +56,8 @@
   -webkit-text-fill-color: transparent;
 }
 
-.caroussel>section>button {
-  width: 35%;
+.caroussel>section>a {
+  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,7 +71,7 @@
   cursor: pointer;
 }
 
-.caroussel>section>button:hover {
+.caroussel>section>a:hover {
   background: linear-gradient(to right,rgb(4, 4, 242), rgb(3, 142, 235), rgb(1, 123, 203));
 }
 
@@ -146,9 +128,6 @@
 }
 
 @media screen and (max-width:960px) {
-  .container>nav>a {
-    width: 20%;
-  }
   .caroussel>img {
     width: 50%;
   }
@@ -162,7 +141,7 @@
     font-weight: bold;
   }
 
-  .caroussel>section>button {
+  .caroussel>section>a {
     width: 55%;
   }
 }
@@ -175,11 +154,7 @@
     height: 2.5rem;
     width: 2.5rem;
   }
-  .container>nav>a {
-    width: 9rem;
-    height: 2rem;
-    font-size: 15px;
-  }
+
   .caroussel {
     height: calc(100% - 3rem);
     display: flex;
@@ -205,8 +180,8 @@
     font-weight: bold;
   }
 
-  .caroussel>section>button {
-    width: 40%;
+  .caroussel>section>a {
+    width: 30%;
     height: 1.8rem;
     font-size: 16px;
   }
@@ -226,12 +201,6 @@
     padding-right: 10px;
   }
 
-  .container>nav>a {
-    width: 7rem;
-    height: 1.8rem;
-    font-size: 13px;
-  }
-
   .caroussel>img {
     margin-left: 25%;
     width: 50%;
@@ -248,7 +217,7 @@
     font-size: 22px;
   }
 
-  .caroussel>section>button {
+  .caroussel>section>a {
    border-radius: 6px;
     height: 1.5rem;
     font-size: 12px;

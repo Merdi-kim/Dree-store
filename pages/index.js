@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import StoreCard from '../components/StoreCard'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -23,12 +24,13 @@ export default function Home() {
         <div className={styles.container}>
           <nav>
             <img src="https://blog.hubspot.com/hubfs/ecommerce-software.jpg" alt="" />
-            <Link href='/create-store'>New store</Link>
+            
+            <ConnectButton accountStatus="avatar" chainStatus="icon" showBalance={false}/>
           </nav>
           <div className={styles.caroussel}>
             <section>
               <p>Shop on the decentralized web</p> 
-              <button>Connect wallet</button>
+              <Link href='/create-store'>New store</Link>
             </section>
             <img src="/images/dree-store.gif" alt="" />
           </div>
