@@ -24,7 +24,6 @@ export default function Home() {
         <div className={styles.container}>
           <nav>
             <img src="https://blog.hubspot.com/hubfs/ecommerce-software.jpg" alt="" />
-            
             <ConnectButton accountStatus="avatar" chainStatus="icon" showBalance={false}/>
           </nav>
           <div className={styles.caroussel}>
@@ -47,7 +46,7 @@ export default function Home() {
             </section>
           </div>
           <div className={styles.stores}>
-            {stores?.map(({img, description, name}) => <StoreCard key={3} img={img} description={description} name={name} />)}
+            {stores?.map(({img, description, name}) => <StoreCard key={3} id={20} img={img} description={description} name={name} />)}
           </div>
         </div>
       </main>

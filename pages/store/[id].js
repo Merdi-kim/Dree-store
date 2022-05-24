@@ -1,6 +1,6 @@
-import styles from '../../styles/Store.module.css'
-import ItemCard from '../../components/ItemCard'
 import Link from 'next/link'
+import ItemCard from '../../components/ItemCard'
+import styles from '../../styles/Store.module.css'
 
 function Store() {
 
@@ -9,6 +9,7 @@ function Store() {
     description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit.sit amet consectetur adipisicing',
     price:0.5
   })
+
   return (
     <div className={styles.store}>
         <nav>

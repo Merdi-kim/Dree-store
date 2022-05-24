@@ -11,12 +11,13 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon],
+  [/*chain.mainnet,*/ chain.localhost, chain.hardhat],
   [
     apiProvider.alchemy(process.env.ALCHEMY_ID),
     apiProvider.fallback()
   ]
 );
+
 const { connectors } = getDefaultWallets({
   appName: 'Dree store',
   chains

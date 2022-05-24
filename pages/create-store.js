@@ -1,37 +1,55 @@
 import Router from 'next/router'
-import { ethers } from 'ethers'
+import { useContract, useSigner } from 'wagmi'
+import { storeData } from '../lib/storage'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
 import styles from '../styles/Form.module.css'
+import { useState } from 'react'
 
 function CreateStore() {
 
-  const createStoreHandler = async(e) => {
+  const [StoreData, setStoreData] = useState({
+    name:'',
+    category:''
+  })
+  const [file, setFile] = useState([])
+
+  const { data: signer, isError, isLoading } = useSigner()
+  const storeContract = useContract({
+    addressOrName: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
+    contractInterface: Store.abi,
+    signerOrProvider: signer
+  })
+
+  const createStore = async(e) => {
     e.preventDefault()
-    const provider = new ethers.providers.JsonRpcProvider()    //Web3Provider(window.ethereum)
-    //await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner()
-    const storeContract = new ethers.Contract('0x5FbDB2315678afecb367f032d93F642f64180aa3', Store.abi, signer)
-    const tx = await storeContract.createStore('lele')
-    const txxx = await tx.wait()
-    Router.push('/')
+    const blob = new Blob([JSON.stringify(StoreData)], { type: 'application/json' })
+    const files = [
+      new File(file),
+      new File([blob], `${StoreData.name}.json`)
+    ]
+    const cid = await storeData(files)
+    //const tx = await storeContract.createStore(cid,'lelere')
+    //const txxx = await tx.wait()
+    //console.log(txxx)
+    //Router.push('/')
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.store}>
       <h2>Create your store here !</h2>
-      <form onSubmit={createStoreHandler}>
+      <form onSubmit={createStore}>
         <fieldset>
           <label htmlFor="">Name</label>
-          <input type="text" placeholder='Store name ...' />
+          <input type="text" placeholder='Store name ...' onChange={(e) => setStoreData({...StoreData, name : e.target.value})} />
         </fieldset>
         <fieldset>
           <label htmlFor="">Category</label>
-          <input type="text" placeholder='eg:Electornics, clothes...' />
+          <input type="text" placeholder='eg:Electornics, clothes...' onChange={(e) => setStoreData({...StoreData, category : e.target.value})} />
         </fieldset>
         <fieldset>
           <label htmlFor="store">Store thumbnail</label>
-          <input type='file'/>
+          <input type='file' accept='image/*' onChange={(e) => setFile(e.target.files)}/>
         </fieldset>
         
       <button type='submit'>Create</button>
