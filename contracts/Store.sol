@@ -17,18 +17,18 @@ contract StoreContract is ERC721 {
 
     mapping(uint256 => mapping(uint256 => Item)) private stores;
 
-    event CreatedStore( uint256 itemId, string category );
+    event CreatedStore( uint256 itemId, string metadata, string category );
     event PostedItem( uint256 itemId, uint256 itemPrice, bool listingSatus);
     event PriceUpdated(uint256 itemId, uint256 newPrice);
     event ChangeListingStatus(uint256  itemId, bool status);
 
     constructor() ERC721("Dree Store", "DST") public {}
 
-    function createStore( string memory _category) external {
+    function createStore(string memory _metadata, string memory _category) external {
         storeIds.increment();
         uint256 storeId = storeIds.current();
         _mint(msg.sender, storeId);
-        emit CreatedStore(storeId, _category);
+        emit CreatedStore(storeId, _metadata, _category);
     }
 
     function postItem(string memory _metadata, uint256 _storeId, uint256 _price) external {

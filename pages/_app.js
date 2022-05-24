@@ -11,7 +11,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 
 const { chains, provider } = configureChains(
-  [/*chain.mainnet,*/ chain.localhost, chain.hardhat],
+  [chain.polygonMumbai],
   [
     apiProvider.alchemy(process.env.ALCHEMY_ID),
     apiProvider.fallback()

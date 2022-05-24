@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
 
-  const stores = Array(88).fill({
+  const stores = Array(8).fill({
     img:'https://ugtechmag.com/wp-content/uploads/2020/04/Odukar-Store-ugtechmag.jpeg',
     description:'Electronics devices',
     name:'TMP store'

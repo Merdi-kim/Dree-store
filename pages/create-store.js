@@ -15,22 +15,22 @@ function CreateStore() {
 
   const { data: signer, isError, isLoading } = useSigner()
   const storeContract = useContract({
-    addressOrName: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
+    addressOrName: '0x4c9C43F681b61B9162a191DAC9712D5493919DFb',
     contractInterface: Store.abi,
     signerOrProvider: signer
   })
 
   const createStore = async(e) => {
     e.preventDefault()
-    const blob = new Blob([JSON.stringify(StoreData)], { type: 'application/json' })
+    /*const blob = new Blob([JSON.stringify(StoreData)], { type: 'application/json' })
     const files = [
       new File(file),
       new File([blob], `${StoreData.name}.json`)
     ]
-    const cid = await storeData(files)
-    //const tx = await storeContract.createStore(cid,'lelere')
-    //const txxx = await tx.wait()
-    //console.log(txxx)
+    const cid = await storeData(files)*/
+    const tx = await storeContract.createStore('cid','lelere')
+    const txxx = await tx.wait()
+    console.log(txxx)
     //Router.push('/')
   }
 
