@@ -1,1 +1,1 @@
-# Dree-store built on the blockchain
+# Dree-store is an E-commerce web app built on the blockchain
