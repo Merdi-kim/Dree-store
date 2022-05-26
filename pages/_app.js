@@ -6,6 +6,8 @@ import {
   darkTheme
 } from '@rainbow-me/rainbowkit'
 import { chain, createClient, WagmiProvider } from 'wagmi'
+import { Provider } from 'react-redux'
+import store from '../redux-store/store'
 import '../styles/globals.css'
 import '@rainbow-me/rainbowkit/styles.css';
 
@@ -30,11 +32,14 @@ const wagmiClient = createClient({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <WagmiProvider client={wagmiClient}>
+    <Provider store={store}>
+      <WagmiProvider client={wagmiClient}>
       <RainbowKitProvider chains={chains} theme={darkTheme()}>
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiProvider>
+    </Provider>
+    
   );
 }
 

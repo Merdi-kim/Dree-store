@@ -2,17 +2,27 @@ import Router from 'next/router'
 import { useState, useEffect } from 'react'
 import { Web3Storage } from 'web3.storage'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
 import styles from '../styles/StoreCard.module.css'
 
 
 function StoreCard({ id, cid, category }) {
 
   const [cardData, setCardData] = useState(null)
+  const dispatch = useDispatch()
 
   const storageKey = process.env.NEXT_PUBLIC_STORAGE_KEY 
   const storage = new Web3Storage({token:storageKey})
 
   const goToSpecificStoreHandler = () => {
+    dispatch({
+      type:'goToStore',
+      storeInfo: {
+        name:cardData?.name,
+        image:cardData?.image,
+        id
+      }
+    })
     Router.push(`/store/${id}`)
   }
 
