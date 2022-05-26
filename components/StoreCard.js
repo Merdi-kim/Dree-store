@@ -1,16 +1,44 @@
 import Router from 'next/router'
+import { useState, useEffect } from 'react'
+import { Web3Storage } from 'web3.storage'
+import axios from 'axios'
 import styles from '../styles/StoreCard.module.css'
-function StoreCard({ img, description, name, id }) {
 
-  const goToSpecificStoreHandler = () => {
+
+function StoreCard({ id, cid, category }) {
+
+  const [cardData, setCardData] = useState(null)
+
+  const storageKey = process.env.NEXT_PUBLIC_STORAGE_KEY 
+  const storage = new Web3Storage({token:storageKey})
+
+  const goToSpecificStoreHandler = ( id ) => {
     Router.push(`/store/${id}`)
   }
 
+  const getMetadata = async() => {
+    const res = await storage.get(cid)
+    if (res.ok) {
+      const [metadataFile, imageFile] = await res.files()
+      const image = `https://ipfs.io/ipfs/${imageFile.cid}`
+      const {data} = await axios.get(`https://ipfs.io/ipfs/${metadataFile.cid}`)
+      setCardData({
+        image,
+        ...data
+      })
+
+    }
+  }
+
+  useEffect(() => {
+    getMetadata()
+  },[])
+ 
   return (
     <div className={styles.storeCard} onClick={goToSpecificStoreHandler}>
-      <img src={ img } alt="" />
-      <span>{ description }</span>
-      <h3>{ name }</h3>
+      <img src={ cardData?.image } alt="" />
+      <span>{ category }</span>
+      <h3>{ cardData?.name }</h3>
     </div>
   )
 }

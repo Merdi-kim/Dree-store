@@ -22,16 +22,15 @@ function CreateStore() {
 
   const createStore = async(e) => {
     e.preventDefault()
-    /*const blob = new Blob([JSON.stringify(StoreData)], { type: 'application/json' })
+    const blob = new Blob([JSON.stringify(StoreData)], { type: 'application/json' })
     const files = [
-      new File(file),
+      file[0],
       new File([blob], `${StoreData.name}.json`)
     ]
-    const cid = await storeData(files)*/
-    const tx = await storeContract.createStore('cid','lelere')
-    const txxx = await tx.wait()
-    console.log(txxx)
-    //Router.push('/')
+    const cid = await storeData(files)
+    const tx = await storeContract.createStore(cid,'merkim')
+    await tx.wait()
+    Router.push('/')
   }
 
   return (

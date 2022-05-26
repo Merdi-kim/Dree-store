@@ -1,16 +1,24 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import {  useState ,useEffect } from 'react'
 import StoreCard from '../components/StoreCard'
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { getStores } from '../graph/graphResponses'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
 
-  const stores = Array(8).fill({
-    img:'https://ugtechmag.com/wp-content/uploads/2020/04/Odukar-Store-ugtechmag.jpeg',
-    description:'Electronics devices',
-    name:'TMP store'
-  })
+  const [stores, setStores] = useState([])
+
+  const getAllStores = async() => {
+    const { createdStores} = await getStores()
+    setStores(createdStores)
+  }
+
+  useEffect(() => {
+    getAllStores()
+  }, [])
+ 
 
   return (
     <div>
@@ -46,7 +54,7 @@ export default function Home() {
             </section>
           </div>
           <div className={styles.stores}>
-            {stores?.map(({img, description, name}) => <StoreCard key={3} id={20} img={img} description={description} name={name} />)}
+            {stores?.map(({id, itemId, metadata, category}) => <StoreCard key={id} id={itemId} cid={metadata} category={category} />)}
           </div>
         </div>
       </main>

@@ -15,10 +15,10 @@ contract StoreContract is ERC721 {
         bool listed;
     }
 
-    mapping(uint256 => mapping(uint256 => Item)) private stores;
+    mapping(uint256 => mapping(string => Item)) private stores;
 
-    event CreatedStore( uint256 itemId, string metadata, string category );
-    event PostedItem( uint256 itemId, uint256 itemPrice, bool listingSatus);
+    event CreatedStore( uint256 itemId, address storeOwner, string metadata, string category );
+    event PostedItem( string itemId, uint256 itemPrice, bool listingSatus);
     event PriceUpdated(uint256 itemId, uint256 newPrice);
     event ChangeListingStatus(uint256  itemId, bool status);
 
@@ -28,38 +28,38 @@ contract StoreContract is ERC721 {
         storeIds.increment();
         uint256 storeId = storeIds.current();
         _mint(msg.sender, storeId);
-        emit CreatedStore(storeId, _metadata, _category);
+        emit CreatedStore(storeId, msg.sender, _metadata, _category);
     }
 
-    function postItem(string memory _metadata, uint256 _storeId, uint256 _price) external {
+    function postItem(string memory _metadata, string memory _itemName, uint256 _storeId, uint256 _price) external {
         require(_exists(_storeId), "store doesn't exist");
         require(msg.sender == ownerOf(_storeId), "not your store");
-        stores[_storeId][4] = Item(_metadata, _price, 0, true);
-        emit PostedItem(4, _price, true);
+        stores[_storeId][_itemName] = Item(_metadata, _price, 0, true);
+        emit PostedItem(_itemName, _price, true);
     }
 
-    function buyItem(uint256 _storeId, uint256 _itemId) external payable {
+    function buyItem(uint256 _storeId, string memory _itemName) external payable {
         require(_exists(_storeId), "store doesn't exist");
         address storeOwner = ownerOf(_storeId);
-        Item memory itemToBuy = stores[_storeId][_itemId];
+        Item memory itemToBuy = stores[_storeId][_itemName];
         require(msg.value == itemToBuy.price, "Wrong amount");
         payable(storeOwner).transfer(msg.value);
         itemToBuy.ordersMade = itemToBuy.ordersMade + 1;
     }
 
-    function changeItemPrice(uint256 _storeId, uint256 _itemId, uint256 _newPrice) external {
+    function changeItemPrice(uint256 _storeId, uint256 _itemId, string memory _itemName, uint256 _newPrice) external {
         require(_exists(_storeId), "store doesn't exist");
         require(msg.sender == ownerOf(_storeId), "not your store");
-        Item memory itemToModify = stores[_storeId][_itemId];
+        Item memory itemToModify = stores[_storeId][_itemName];
         require(itemToModify.price != _newPrice, "price should be different");
         itemToModify.price = _newPrice;
         emit PriceUpdated(_itemId, _newPrice);
     }
 
-    function changeListingStatus(uint256 _storeId, uint256 _itemId) external {
+    function changeListingStatus(uint256 _storeId, string memory _itemName, uint256 _itemId) external {
         require(_exists(_storeId), "store doesn't exist");
         require(msg.sender == ownerOf(_storeId), "not your store");
-        Item memory itemToModify = stores[_storeId][_itemId];
+        Item memory itemToModify = stores[_storeId][_itemName];
         itemToModify.listed = !itemToModify.listed;
         emit ChangeListingStatus(_itemId, itemToModify.listed);
     }

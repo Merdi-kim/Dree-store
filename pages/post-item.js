@@ -3,6 +3,7 @@ import { storeData } from '../lib/storage'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
 import styles from '../styles/Form.module.css'
 import { useState } from 'react'
+import Router from 'next/router'
 
 function PostItem() {
 
@@ -14,7 +15,7 @@ function PostItem() {
 
   const { data: signer, isError, isLoading } = useSigner()
   const storeContract = useContract({
-    addressOrName: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
+    addressOrName: '0x4c9C43F681b61B9162a191DAC9712D5493919DFb',
     contractInterface: Store.abi,
     signerOrProvider: signer
   })
@@ -23,13 +24,13 @@ function PostItem() {
     e.preventDefault()
     const blob = new Blob([JSON.stringify(itemData)], { type: 'application/json' })
     const files = [
-      new File(file),
+      file[0],
       new File([blob], `${itemData.name}.json`)
     ]
     const cid = await storeData(files)
-    //const tx = await storeContract.postItem(cid,1, 6)
-    //const txxx = await tx.wait()
-    //console.log(txxx)
+    const tx = await storeContract.postItem(cid, itemData.name,1, 6)
+    await tx.wait()
+    Router.push('/')
   }
 
   return (
