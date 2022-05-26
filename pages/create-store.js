@@ -28,7 +28,7 @@ function CreateStore() {
       new File([blob], `${StoreData.name}.json`)
     ]
     const cid = await storeData(files)
-    const tx = await storeContract.createStore(cid,'merkim')
+    const tx = await storeContract.createStore(cid,storeData.category)
     await tx.wait()
     Router.push('/')
   }

@@ -12,7 +12,7 @@ function StoreCard({ id, cid, category }) {
   const storageKey = process.env.NEXT_PUBLIC_STORAGE_KEY 
   const storage = new Web3Storage({token:storageKey})
 
-  const goToSpecificStoreHandler = ( id ) => {
+  const goToSpecificStoreHandler = () => {
     Router.push(`/store/${id}`)
   }
 

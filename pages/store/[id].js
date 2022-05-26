@@ -1,14 +1,24 @@
 import Link from 'next/link'
+import { useState, useEffect} from 'react'
+import { getItems } from '../../graph/graphResponses'
 import ItemCard from '../../components/ItemCard'
 import styles from '../../styles/Store.module.css'
 
 function Store() {
 
-  const itemsInStore = Array(55).fill({
-    img:'https://media.smallbiztrends.com/2015/10/opening-your-first-retail-store.jpg',
-    description:'Lorem ipsum dolor, sit amet consectetur adipisicing elit.sit amet consectetur adipisicing',
-    price:0.5
-  })
+  const [storeItems, setStoreItems] = useState([])
+
+  const getAllStoreItems = async() => {
+    const { postedItems } = await getItems()
+    setStoreItems( postedItems )
+  }
+
+  useEffect(() => {
+    getAllStoreItems()
+  }, [])
+   
+
+  console.log(storeItems)
 
   return (
     <div className={styles.store}>
@@ -19,7 +29,7 @@ function Store() {
         </nav>
 
         <div className={styles.itemsList}>
-            { itemsInStore?.map(({img, description, price}) => <ItemCard key={1} img={img} description={description} price={price} />) }
+            { storeItems?.map(({img, description, price}) => <ItemCard key={1} img={img} description={description} price={price} />) }
         </div>
     </div>
   )

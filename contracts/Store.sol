@@ -18,7 +18,7 @@ contract StoreContract is ERC721 {
     mapping(uint256 => mapping(string => Item)) private stores;
 
     event CreatedStore( uint256 itemId, address storeOwner, string metadata, string category );
-    event PostedItem( string itemId, uint256 itemPrice, bool listingSatus);
+    event PostedItem( uint256 storeId, string itemId, uint256 itemPrice, bool listingSatus);
     event PriceUpdated(uint256 itemId, uint256 newPrice);
     event ChangeListingStatus(uint256  itemId, bool status);
 
@@ -35,7 +35,7 @@ contract StoreContract is ERC721 {
         require(_exists(_storeId), "store doesn't exist");
         require(msg.sender == ownerOf(_storeId), "not your store");
         stores[_storeId][_itemName] = Item(_metadata, _price, 0, true);
-        emit PostedItem(_itemName, _price, true);
+        emit PostedItem(_storeId, _itemName, _price, true);
     }
 
     function buyItem(uint256 _storeId, string memory _itemName) external payable {
