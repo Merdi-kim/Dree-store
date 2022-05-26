@@ -2,6 +2,7 @@ import Router from 'next/router'
 import { useContract, useSigner } from 'wagmi'
 import { storeData } from '../lib/storage'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
+import { address } from '../helpers/contractAddress'
 import styles from '../styles/Form.module.css'
 import { useState } from 'react'
 
@@ -15,7 +16,7 @@ function CreateStore() {
 
   const { data: signer, isError, isLoading } = useSigner()
   const storeContract = useContract({
-    addressOrName: '0x4c9C43F681b61B9162a191DAC9712D5493919DFb',
+    addressOrName: address,
     contractInterface: Store.abi,
     signerOrProvider: signer
   })
@@ -28,7 +29,7 @@ function CreateStore() {
       new File([blob], `${StoreData.name}.json`)
     ]
     const cid = await storeData(files)
-    const tx = await storeContract.createStore(cid,storeData.category)
+    const tx = await storeContract.createStore(cid, storeData.category)
     await tx.wait()
     Router.push('/')
   }

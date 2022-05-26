@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.6.5",
+    "@chainlink/contracts": "^0.4.1",
     "@openzeppelin/contracts": "^4.6.0",
     "@rainbow-me/rainbowkit": "^0.1.1",
     "@reduxjs/toolkit": "^1.8.2",

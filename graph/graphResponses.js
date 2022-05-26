@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { storesQuery, itemsQuery} from './queries'
 
-const APIURL = 'https://api.thegraph.com/subgraphs/name/merdi-kim/store'
+const APIURL = 'https://api.thegraph.com/subgraphs/name/merdi-kim/store2'
 
 const client = new ApolloClient({
     uri: APIURL,

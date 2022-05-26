@@ -14,18 +14,6 @@ function StoreCard({ id, cid, category }) {
   const storageKey = process.env.NEXT_PUBLIC_STORAGE_KEY 
   const storage = new Web3Storage({token:storageKey})
 
-  const goToSpecificStoreHandler = () => {
-    dispatch({
-      type:'goToStore',
-      storeInfo: {
-        name:cardData?.name,
-        image:cardData?.image,
-        id
-      }
-    })
-    Router.push(`/store/${id}`)
-  }
-
   const getMetadata = async() => {
     const res = await storage.get(cid)
     if (res.ok) {
@@ -44,6 +32,19 @@ function StoreCard({ id, cid, category }) {
     getMetadata()
   },[])
  
+  
+  const goToSpecificStoreHandler = () => {
+    dispatch({
+      type:'goToStore',
+      storeInfo: {
+        name:cardData?.name,
+        image:cardData?.image,
+        id
+      }
+    })
+    Router.push(`/store/${id}`)
+  }
+  
   return (
     <div className={styles.storeCard} onClick={goToSpecificStoreHandler}>
       <img src={ cardData?.image } alt="" />

@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { useContract, useSigner } from 'wagmi'
+import { useSelector } from 'react-redux'
 import { storeData } from '../lib/storage'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
+import { address } from '../helpers/contractAddress'
 import styles from '../styles/Form.module.css'
-import { useState } from 'react'
 import Router from 'next/router'
 
 function PostItem() {
@@ -10,12 +12,14 @@ function PostItem() {
   const [itemData, setItemData] = useState({
     name:'',
     description:'',
+    price:0
   })
   const [file, setFile] = useState([])
+  const { storeInfo } = useSelector(data => data)
 
   const { data: signer, isError, isLoading } = useSigner()
   const storeContract = useContract({
-    addressOrName: '0x4c9C43F681b61B9162a191DAC9712D5493919DFb',
+    addressOrName: address,
     contractInterface: Store.abi,
     signerOrProvider: signer
   })
@@ -28,7 +32,7 @@ function PostItem() {
       new File([blob], `${itemData.name}.json`)
     ]
     const cid = await storeData(files)
-    const tx = await storeContract.postItem(cid, itemData.name,1, 6)
+    const tx = await storeContract.postItem(cid, itemData.name,storeInfo.id, itemData.price)
     await tx.wait()
     Router.push('/')
   }
@@ -45,6 +49,10 @@ function PostItem() {
             <fieldset>
               <label htmlFor="">Description</label>
               <input type="text" placeholder='eg:The coolest iphone' onChange={(e) => setItemData({...itemData, description:e.target.value})} />
+            </fieldset>
+            <fieldset>
+              <label htmlFor="">Price</label>
+              <input type="text" placeholder='eg:Price in matic' onChange={(e) => setItemData({...itemData, price:e.target.value})} />
             </fieldset>
             <fieldset>
               <label htmlFor="store">Item picture</label>

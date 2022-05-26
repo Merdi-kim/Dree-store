@@ -1,17 +1,14 @@
 import { useContract, useSigner } from 'wagmi'
-import { useSelector } from 'react-redux'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
+import { address } from './../helpers/contractAddress'
 import styles from '../styles/ItemCard.module.css'
 
 function ItemCard({ img, description, price }) {
 
-  const dispatchedData = useSelector(data => data)
-
-  console.log(dispatchedData)
-
   const { data: signer, isError, isLoading } = useSigner()
+
   const storeContract = useContract({
-    addressOrName: '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707',
+    addressOrName: address,
     contractInterface: Store.abi,
     signerOrProvider: signer
   })
