@@ -1,6 +1,6 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useContract, useSigner } from 'wagmi'
-import {ethers} from 'ethers'
+import { ethers } from 'ethers'
 import { Web3Storage } from 'web3.storage'
 import axios from 'axios'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
@@ -42,14 +42,14 @@ function ItemCard({ cid, id, orders, storeId, price }) {
 
   const purchaseItem = async() => {
     const priceToEther = ethers.utils.parseEther(formattedPrice)
-    const tx = await storeContract.buyItem(storeId, id, {value: priceToEther}) 
+    const tx = await storeContract.buyItem(Number(storeId._hex), id, {value: priceToEther}) 
     const txxx = await tx.wait()
     console.log(txxx)
   }
 
   return (
     <div className={styles.itemCard}>
-        <img src={cardData?.image} alt="" />
+        <img src={cardData?.image} alt=""/>
         <h4>{cardData?.name}</h4>
         <p>{cardData?.description}</p>
         <button onClick={purchaseItem}>Purchase</button>

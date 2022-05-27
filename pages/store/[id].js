@@ -25,7 +25,7 @@ function Store() {
   const getAllStoreItems = async() => {
     const simpleData = await fetch()
     const transformedData = simpleData?.map(data => data.attributes)
-    setStoreItems(transformedData)
+    setStoreItems(transformedData.filter(item => Number(item.storeId._hex) == storeInfo.id))
   }
 
   useEffect(() => {

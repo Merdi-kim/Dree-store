@@ -26,8 +26,6 @@ function PostItem() {
     contractInterface: Store.abi,
     signerOrProvider: signer
   })
-
-  //if (!storeInfo.id) return Router.push('/')
     
   const postItem = async(e) => {
     e.preventDefault()
@@ -40,7 +38,6 @@ function PostItem() {
     const transformedPrice = new ethers.utils.parseEther(itemData.price)
     const tx = await storeContract.postItem(cid, itemData.name,storeInfo.id, transformedPrice)
     const {events} = await tx.wait()
-    console.log(events)
     const [storeId, itemId, metadata, price, orders, listingStatus ] =events[0].args
     const dataToSave = {
       storeId,

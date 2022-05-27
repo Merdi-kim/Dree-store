@@ -1,6 +1,6 @@
 .itemCard {
     flex: none;
-    height: 44vh;
+    height: 60vh;
     width: 300px;
     background-color: rgb(57, 56, 56);
     border-radius: 12px;
@@ -15,19 +15,39 @@
     height: 55%;
 }
 
-.itemCard>p {
+.itemCard>h4 {
+    color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.itemCard>p, .itemCard>h4 {
     padding: 10px;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.itemCard>p {
+    margin: 0;
 }
 
 .itemCard>button {
     width: 60%;
-    margin-left: 20%;
     height: 2rem;
     border-radius: 9px;
     border: none;
     background-color: black;
     color: wheat;
     cursor: pointer;
+    position: absolute;
+    bottom: 5%;
+    left: 20%;
+}
+
+.itemCard>button:hover {
+    background-color: rgb(34, 33, 33);
+    border: 2px solid black;
 }
 
 .itemCard>span {
@@ -35,5 +55,6 @@
     top: 56%;
     right: 2%;
     background: grey;
-    padding: 2px 4px;
+    border-radius: 5px;
+    color: white
 }

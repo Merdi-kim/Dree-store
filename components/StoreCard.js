@@ -8,8 +8,6 @@ import styles from '../styles/StoreCard.module.css'
 
 function StoreCard({ id, cid, category, storeOwner }) {
 
-  console.log(id.toNumber())
-
   const [cardData, setCardData] = useState(null)
   const dispatch = useDispatch()
 
@@ -42,11 +40,11 @@ function StoreCard({ id, cid, category, storeOwner }) {
       storeInfo: {
         name:cardData?.name,
         image:cardData?.image,
-        id: Number(id),
+        id: Number(id._hex),
         storeOwner
       }
     })
-    Router.push(`/store/${id}`)
+    Router.push(`/store/${Number(id._hex)}`)
   }
   
   return (
