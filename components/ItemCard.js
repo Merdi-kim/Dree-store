@@ -53,7 +53,7 @@ function ItemCard({ cid, id, orders, storeId, price }) {
         <h4>{cardData?.name}</h4>
         <p>{cardData?.description}</p>
         <button onClick={purchaseItem}>Purchase</button>
-        <span>{ formattedPrice } ETH</span>
+        <span>{ formattedPrice } MATIC</span>
     </div>
   )
 }

@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <WagmiProvider client={wagmiClient}>
       <RainbowKitProvider chains={chains} theme={darkTheme()}>
-        <MoralisProvider serverUrl="https://hn9a0jxn8b1z.usemoralis.com:2053/server" appId="qlhoRbMe3GWpl9wwyK9v1rXMalAAytVIn6Gn0Gcy">
+        <MoralisProvider serverUrl="https://7my9a1ac6v0o.usemoralis.com:2053/server" appId="dHCgCSEwgRwI5pQ8tUcvOJygAivauGbsLocR9Flg">
           <Component {...pageProps} />
         </MoralisProvider> 
       </RainbowKitProvider>
