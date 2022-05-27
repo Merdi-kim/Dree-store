@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useState, useEffect} from 'react'
 import { useAccount } from 'wagmi'
-import { getItems } from '../../graph/graphResponses'
 import ItemCard from '../../components/ItemCard'
 import { useSelector } from 'react-redux'
+import { useMoralisQuery } from 'react-moralis'
 import styles from '../../styles/Store.module.css'
 
 function Store() {
@@ -15,9 +15,17 @@ function Store() {
   const { data } = useAccount()
   const owner = data?.address
 
+  const { fetch } = useMoralisQuery(
+    "Items",
+    (query) => query.includeAll(),
+    [],
+    {autoFetch:true}
+  )
+
   const getAllStoreItems = async() => {
-    const { postedItems } = await getItems()
-    setStoreItems( postedItems )
+    const simpleData = await fetch()
+    const transformedData = simpleData?.map(data => data.attributes)
+    setStoreItems(transformedData)
   }
 
   useEffect(() => {
@@ -29,11 +37,11 @@ function Store() {
         <nav>
           <img src={storeInfo.image} alt="logo" />
           <span>{storeInfo.name}</span>
-          <Link href='/post-item'>New item</Link>
+          { owner == storeInfo.storeOwner && <Link href='/post-item'>New item</Link>}
         </nav>
 
         <div className={styles.itemsList}>
-            { storeItems?.map(({img, description, price}) => <ItemCard key={1} img={img} description={description} price={price} />) }
+            { storeItems?.map(({itemId, metadata, orders, price, storeId}) => <ItemCard key={itemId} id={itemId} cid={metadata} orders={orders} storeId={storeId} price={price} />) }
         </div>
     </div>
   )

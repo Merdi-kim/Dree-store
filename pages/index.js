@@ -3,16 +3,24 @@ import Link from 'next/link'
 import {  useState ,useEffect } from 'react'
 import StoreCard from '../components/StoreCard'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { getStores } from '../graph/graphResponses'
+import { useMoralisQuery } from 'react-moralis'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
 
   const [stores, setStores] = useState([])
 
+  const { fetch } = useMoralisQuery(
+    "Store",
+    (query) => query.includeAll(),
+    [],
+    {autoFetch:true}
+  )
+
   const getAllStores = async() => {
-    const { createdStores} = await getStores()
-    setStores(createdStores)
+    const simpleData = await fetch()
+    const transformedData = simpleData?.map(data => data.attributes)
+    setStores(transformedData)
   }
 
   useEffect(() => {
@@ -54,7 +62,7 @@ export default function Home() {
             </section>
           </div>
           <div className={styles.stores}>
-            {stores?.map(({id, itemId, metadata, category}) => <StoreCard key={id} id={itemId} cid={metadata} category={category} />)}
+            {stores?.map(({storeOwner, itemId, metadata, category}) => <StoreCard key={itemId} id={itemId} storeOwner={storeOwner} cid={metadata} category={category} />)}
           </div>
         </div>
       </main>

@@ -1,10 +1,11 @@
 import Router from 'next/router'
+import { useState } from 'react'
 import { useContract, useSigner } from 'wagmi'
 import { storeData } from '../lib/storage'
 import Store from '../artifacts/contracts/Store.sol/StoreContract.json'
 import { address } from '../helpers/contractAddress'
+import { useNewMoralisObject } from "react-moralis";
 import styles from '../styles/Form.module.css'
-import { useState } from 'react'
 
 function CreateStore() {
 
@@ -13,6 +14,7 @@ function CreateStore() {
     category:''
   })
   const [file, setFile] = useState([])
+  const { save } = useNewMoralisObject("Store");
 
   const { data: signer, isError, isLoading } = useSigner()
   const storeContract = useContract({
@@ -29,9 +31,26 @@ function CreateStore() {
       new File([blob], `${StoreData.name}.json`)
     ]
     const cid = await storeData(files)
-    const tx = await storeContract.createStore(cid, storeData.category)
-    await tx.wait()
-    Router.push('/')
+    const tx = await storeContract.createStore(cid, StoreData.category)
+    const {events} = await tx.wait()
+    const [itemId, storeOwner, metadata, category] =events[1].args
+    const dataToSave = {
+      itemId,
+      metadata,
+      category,
+      storeOwner,
+      items:[]
+    };
+
+    save(dataToSave, {
+      onSuccess: (store) => {
+        Router.push('/')
+      },
+      onError: (error) => {
+        console.log("Failed to create new object, with error code: " + error.message);
+      },
+    });
+    
   }
 
   return (

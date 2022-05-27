@@ -6,7 +6,9 @@ import { useDispatch } from 'react-redux'
 import styles from '../styles/StoreCard.module.css'
 
 
-function StoreCard({ id, cid, category }) {
+function StoreCard({ id, cid, category, storeOwner }) {
+
+  console.log(id.toNumber())
 
   const [cardData, setCardData] = useState(null)
   const dispatch = useDispatch()
@@ -16,16 +18,17 @@ function StoreCard({ id, cid, category }) {
 
   const getMetadata = async() => {
     const res = await storage.get(cid)
-    if (res.ok) {
-      const [metadataFile, imageFile] = await res.files()
-      const image = `https://ipfs.io/ipfs/${imageFile.cid}`
-      const {data} = await axios.get(`https://ipfs.io/ipfs/${metadataFile.cid}`)
-      setCardData({
-        image,
-        ...data
-      })
-
+    if (!res.ok) {
+      console.log('not okay')
     }
+    const [metadataFile, imageFile] = await res.files()
+    const image = `https://ipfs.io/ipfs/${imageFile.cid}`
+    const {data} = await axios.get(`https://ipfs.io/ipfs/${metadataFile.cid}`)
+    setCardData({
+      image,
+      ...data
+    })
+
   }
 
   useEffect(() => {
@@ -39,7 +42,8 @@ function StoreCard({ id, cid, category }) {
       storeInfo: {
         name:cardData?.name,
         image:cardData?.image,
-        id
+        id: Number(id),
+        storeOwner
       }
     })
     Router.push(`/store/${id}`)
