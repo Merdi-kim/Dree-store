@@ -25,10 +25,10 @@ export default function Home() {
 
   useEffect(() => {
     getAllStores()
-    console.log('hi')
   }, [])
  
 
+  console.log(stores)
   return (
     <div>
       <Head>
