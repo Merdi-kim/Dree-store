@@ -19,7 +19,7 @@ function Store() {
     "Items",
     (query) => query.includeAll(),
     [],
-    {autoFetch:true}
+    {autoFetch:false}
   )
 
   const getAllStoreItems = async() => {

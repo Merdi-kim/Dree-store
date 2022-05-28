@@ -9,7 +9,6 @@ import { chain, createClient, WagmiProvider } from 'wagmi'
 import { Provider } from 'react-redux'
 import store from '../redux-store/store'
 import { MoralisProvider } from "react-moralis";
-
 import '../styles/globals.css'
 import '@rainbow-me/rainbowkit/styles.css';
 

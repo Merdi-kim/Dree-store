@@ -14,14 +14,12 @@ export default function Home() {
     "Store",
     (query) => query.includeAll(),
     [],
-    {autoFetch:true}
+    {autoFetch:false}
   )
 
   const getAllStores = async() => {
     const simpleData = await fetch()
-    console.log(simpleData)
     const transformedData = simpleData?.map(data => data.attributes)
-    console.log(transformedData)
     setStores(transformedData)
   }
 
@@ -29,8 +27,6 @@ export default function Home() {
     getAllStores()
   }, [])
  
-
-  console.log(stores)
   return (
     <div>
       <Head>
