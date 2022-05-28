@@ -19,7 +19,9 @@ export default function Home() {
 
   const getAllStores = async() => {
     const simpleData = await fetch()
+    console.log(simpleData)
     const transformedData = simpleData?.map(data => data.attributes)
+    console.log(transformedData)
     setStores(transformedData)
   }
 
