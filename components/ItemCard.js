@@ -32,6 +32,8 @@ function ItemCard({ cid, id, orders, storeId, price }) {
       })
 
     }
+    const price = await storeContract.getLatestPrice()
+    //console.log(price)
   }
 
   const formattedPrice = ethers.utils.formatEther(price)
