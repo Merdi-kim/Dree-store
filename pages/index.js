@@ -62,7 +62,7 @@ export default function Home() {
             </section>
           </div>
           <div className={styles.stores}>
-            {stores?.map(({storeOwner, itemId, metadata, category}) => <StoreCard key={itemId} id={itemId} storeOwner={storeOwner} cid={metadata} category={category} />)}
+            {stores?.map(({storeOwner, itemId, metadata, category}) => <StoreCard key={Number(itemId._hex)} id={itemId} storeOwner={storeOwner} cid={metadata} category={category} />)}
           </div>
         </div>
       </main>
