@@ -25,6 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     getAllStores()
+    console.log('hi')
   }, [])
  
 
