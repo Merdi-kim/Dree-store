@@ -26,7 +26,6 @@ function StoreCard({ id, cid, category, storeOwner }) {
       image,
       ...data
     })
-
   }
 
   useEffect(() => {

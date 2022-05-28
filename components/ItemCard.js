@@ -12,7 +12,9 @@ function ItemCard({ cid, id, orders, storeId, price }) {
   const { data: signer, isError, isLoading } = useSigner()
   const storageKey = process.env.NEXT_PUBLIC_STORAGE_KEY 
   const storage = new Web3Storage({token:storageKey})
-  const [cardData, setCardData] = useState(null)
+  const [cardData, setCardData] = useState({
+    usdPrice:0
+  })
 
   const storeContract = useContract({
     addressOrName: address,
@@ -26,14 +28,14 @@ function ItemCard({ cid, id, orders, storeId, price }) {
       const [metadataFile, imageFile] = await res.files()
       const image = `https://ipfs.io/ipfs/${imageFile.cid}`
       const {data} = await axios.get(`https://ipfs.io/ipfs/${metadataFile.cid}`)
+      let usdPrice = await storeContract.getLatestPrice()
+      usdPrice = Number(usdPrice?._hex / 10**8).toFixed(2)
       setCardData({
         image,
-        ...data
+        ...data,
+        usdPrice
       })
-
     }
-    const price = await storeContract.getLatestPrice()
-    //console.log(price)
   }
 
   const formattedPrice = ethers.utils.formatEther(price)
@@ -55,7 +57,7 @@ function ItemCard({ cid, id, orders, storeId, price }) {
         <h4>{cardData?.name}</h4>
         <p>{cardData?.description}</p>
         <button onClick={purchaseItem}>Purchase</button>
-        <span>{ formattedPrice } MATIC</span>
+        {<span>{ Number(formattedPrice * cardData?.usdPrice).toFixed(3)} $</span>}
     </div>
   )
 }
